@@ -21,10 +21,12 @@ Please solve it without the built-in Array.filter method.
 
 const filter = function (arr, fn) {
   let filteredArr = [];
-  for (let i = 0; i < arr.length; i++) {
+  let i = 0;
+  while (i < arr.length) {
     if (fn(arr[i], i)) {
       filteredArr.push(arr[i]);
     }
+    i++;
   }
   return filteredArr;
 };
