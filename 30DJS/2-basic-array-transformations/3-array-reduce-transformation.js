@@ -1,5 +1,8 @@
 /*
 
+2626. Array Reduce Transformation : EASY
+https://leetcode.com/problems/array-reduce-transformation/?envType=study-plan-v2&envId=30-days-of-javascript
+
 the final result obtained by executing the fn function on each element of the array, 
 sequentially, passing in the return value from the calculation on the preceding element.
 
