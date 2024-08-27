@@ -15,8 +15,7 @@ You may assume each function in the array accepts one integer as input and retur
 */
 
 const compose = function(functions) {
-    const fn = functions.reverse()
     return function(x) {
-        
+       return functions.reduceRight((acc, fn) => fn(acc), x);
     }
 };
