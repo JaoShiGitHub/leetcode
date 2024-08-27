@@ -14,8 +14,13 @@ You may assume each function in the array accepts one integer as input and retur
 
 */
 
-const compose = function(functions) {
-    return function(x) {
-       return functions.reduceRight((acc, fn) => fn(acc), x);
-    }
-};
+// First
+
+// const compose = function(functions) {
+//     return function(x) {
+//        return functions.reduceRight((acc, fn) => fn(acc), x);
+//     }
+// };
+
+// Second
+const compose = (functions) => (x) => functions.reduceRight((acc, fn) => fn(acc), x);
