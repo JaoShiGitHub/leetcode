@@ -6,6 +6,12 @@
     
 */
 
-const argumentsLength = function(...args) {
-    return args.length;
-};
+// • First Solution
+
+// const argumentsLength = function(...args) {
+//     return args.length;
+// };
+
+// • Second Solution
+
+const argumentsLength = (...args) => args.length;
