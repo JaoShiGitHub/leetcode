@@ -22,8 +22,16 @@
 */
 
 function memoize(fn) {
-    
-    return function(...args) {
-        
+    const sum = (a, b) => a + b;
+    const factorial = (n) => (n <= 1) ? 1 : (n * factorial(n - 1));
+    const fib = (n) => n <= 1 || (fib(n - 1) + fib(n - 2)) ? 1 : null;
+    const cache = {};
+    return function (...args) {
+        const key = JSON.stringify(args);
+        if (cache[key]) {
+            return cache[key];
+        } else {
+            return fn(...args);
+        }
     }
 }
