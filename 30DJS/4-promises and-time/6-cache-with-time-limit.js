@@ -23,7 +23,6 @@
 */
 
 
-
 const TimeLimitedCache = function() {
     this.storage = new Map()
 };
@@ -65,7 +64,17 @@ TimeLimitedCache.prototype.get = function(key) {
 
 
 TimeLimitedCache.prototype.count = function() {
-    
+    let count = 0;
+    const now = Date.now();
+
+    for (const [key, currentKey] of this.storage) {
+        if (now < currentKey.timeoutID._idleStart + currentKey.timeoutID._idleTimeout) {
+            count++
+        } else {
+             this.store.delete(key);
+        }
+    }
+    return count;
 };
 
 /**
