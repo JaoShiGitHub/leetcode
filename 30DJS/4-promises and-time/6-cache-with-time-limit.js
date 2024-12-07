@@ -47,7 +47,20 @@ TimeLimitedCache.prototype.set = function(key, value, duration) {
 
 
 TimeLimitedCache.prototype.get = function(key) {
+  const currentKey = this.storage.get(key);
 
+    if (!currentKey) {
+        return -1;
+    }
+
+    const now = Date.now();
+
+    if (now >= currentKey.timeoutID._idleStart + currentKey.timeoutID._idleTimeout) {
+        this.storage.delete(key);
+        return -1;
+    }
+
+    return currentKey.value;
 };
 
 
