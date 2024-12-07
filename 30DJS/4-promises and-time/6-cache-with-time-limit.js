@@ -27,19 +27,19 @@ const TimeLimitedCache = function() {
     this.storage = new Map()
 };
 
-
-TimeLimitedCache.prototype.set = function(key, value, duration) {
+TimeLimitedCache.prototype.set = function (key, value, duration) {
     const currentKey = this.storage.get(key);
 
     if (currentKey) {
         clearTimeout(currentKey.timeoutID);
     }
 
+    const expirationTime = Date.now() + duration;
     const timeoutID = setTimeout(() => {
         this.storage.delete(key);
     }, duration);
 
-    this.store.set(key, {value, timeoutID});
+    this.storage.set(key, { value, expirationTime, timeoutID });
 
     return !!currentKey;
 };
