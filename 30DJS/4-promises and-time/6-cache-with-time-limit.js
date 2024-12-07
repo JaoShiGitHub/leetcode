@@ -57,17 +57,18 @@ TimeLimitedCache.prototype.get = function (key) {
 };
 
 
-TimeLimitedCache.prototype.count = function() {
+TimeLimitedCache.prototype.count = function () {
     let count = 0;
     const now = Date.now();
 
     for (const [key, currentKey] of this.storage) {
-        if (now < currentKey.timeoutID._idleStart + currentKey.timeoutID._idleTimeout) {
-            count++
+        if (now < currentKey.expirationTime) {
+            count++;
         } else {
-             this.store.delete(key);
+            this.storage.delete(key); 
         }
     }
+
     return count;
 };
 
