@@ -14,22 +14,23 @@ https://leetcode.com/problems/chunk-array/description/?envType=study-plan-v2&env
 
 */
 
-const chunk = function (arr, size) {
-    let bag = [];
-    let result = [];
+function chunk(arr, size) {
+    let santaBag = [];
+    let santaGifts = [];
     let count = arr.length;
 
     for (let i = 0; i < arr.length; i++) {
-        const item = arr[i];
-        if (bag.length === size) {
-            result.push(bag);
-            bag = [];
-        } else if(count >= size || count < size && count !== 0) {
-            bag.push(item);
+        santaGifts.push(arr[i])
+        if (santaGifts.length === size) {
+            santaBag.push(santaGifts);
+            santaGifts = [];
+        } else if (santaGifts.length < size && i === arr.length - 1) {
+            santaBag.push(santaGifts);
+            santaGifts = [];
         }
         count--
     }
+    return santaBag
+}
 
-    return result;
-};
 
