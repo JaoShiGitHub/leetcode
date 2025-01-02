@@ -33,13 +33,13 @@ const promiseAll = function (functions) {
             const promise = functions[i];
 
             promise()
-            .then(value => {
-                results[i] = value;
-                completed++;
-                if (completed === functions.length) {
-                    resolve(results)
-                }
-            })
+                .then(value => {
+                    results[i] = value;
+                    completed++;
+                    if (completed === functions.length) {
+                        resolve(results)
+                    }
+                })
                 .catch(reject);
         }
     });
