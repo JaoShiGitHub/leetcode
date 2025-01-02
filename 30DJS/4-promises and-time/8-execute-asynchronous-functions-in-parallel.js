@@ -26,21 +26,22 @@ const promiseAll = function (functions) {
 
     return new Promise((resolve, reject) => {
         if (functions.length === 0) {
-            resolve([]);
+            return resolve([]);
         }
 
         for (let i = 0; i < functions.length; i++) {
             const promise = functions[i];
 
-            Promise.resolve(promise)
-                .then(value => {
-                    results[i] = value;
-                    completed++;
-                    if (completed === functions.length) {
-                        resolve(results)
-                    }
-                })
+            promise()
+            .then(value => {
+                results[i] = value;
+                completed++;
+                if (completed === functions.length) {
+                    resolve(results)
+                }
+            })
                 .catch(reject);
         }
     });
 };
+
