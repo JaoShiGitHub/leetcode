@@ -12,18 +12,12 @@
 */
 
 
-const sortBy = function(arr, fn) {
-    if (arr.length === 0) {
-        return [];
-    }
-    
-    let sortedArr = [];
-    let fnResult = []
-
-    for (let item of arr) {
-        fnResult.push(fn(item))
-    }
-
-
-    return sortedArr
-};
+function sortBy(arr, fn) {
+  const sortedArr = [];
+  for (const item of arr) {
+    let i = 0;
+    while (i < sortedArr.length && fn(sortedArr[i]) <= fn(item)) i++;
+    sortedArr.splice(i, 0, item);
+  }
+  return sortedArr;
+}
